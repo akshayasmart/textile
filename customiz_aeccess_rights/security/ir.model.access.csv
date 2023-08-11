@@ -1,0 +1,9 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+,,,,,,,
+
+access_crm_lead_user,access_crm_lead_user,crm.model_crm_lead,group_textile_user,1,1,1,1
+access_crm_lead,access_crm_lead,crm.model_crm_lead,group_textile_operator_head,1,1,1,1
+access_crm_lead_manager,access_crm_lead_manager,crm.model_crm_lead,group_textile_manager,1,1,1,1
+access_crm_lead_admin,access_crm_lead_admin,crm.model_crm_lead,group_textile_admin,1,1,1,1
+
+
