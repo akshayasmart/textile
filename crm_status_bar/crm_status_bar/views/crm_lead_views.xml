@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_crm_lead_form" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <field name="state" widget="statusbar" options="{'clickable': '1'}" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
+            </header>
+            <xpath expr="//field[@name='partner_name']" position="before">
+                <field name="partner_id" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_lead_view" model="ir.ui.view">
+        <field name="name">crm.lead.search</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='lost']" position="after">
+                <filter string="Work Closed" name="state" domain="[('state','=', 'work_closed')]"/>
+                <filter string="Work Open" name="state" domain="[('state','=', 'work_open')]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
