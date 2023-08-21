@@ -14,9 +14,19 @@
             <xpath expr="//field[@name='partner_name']" position="before">
                 <field name="partner_id" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
             </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="quantity"/>
+            </xpath>
             <xpath expr="//div[@id='probability']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
+            <xpath expr="//field[@name='probability']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
             <xpath expr="//page[@name='extra']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
@@ -25,6 +35,8 @@
                 <field name="regarding_id" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
                 <field name="status_id" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
                 <field name="category_id" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
+                <field name="last_action" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
+
             </xpath>
             <label for="name" position="replace">
                 <label string="Item Name" for="name"/>

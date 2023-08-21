@@ -29,4 +29,6 @@ class CrmLead(models.Model):
         compute='_compute_lang_id', readonly=True, store=True)
     status_id = fields.Many2one("status.status", string="Status")
     category_id = fields.Many2one("category.category", string="Category")
+    last_action = fields.Datetime(string='Last Action')
+    quantity = fields.Integer(string='Quantity')
 
