@@ -23,10 +23,18 @@
             <xpath expr="//field[@name='probability']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
+            <xpath expr="//label[@for='probability']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
             <xpath expr="//field[@name='partner_name']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+                 <xpath expr="//field[@name='lang_id']" position="replace">
+                    <field name="quantity"/>
+                </xpath>
             <xpath expr="//page[@name='extra']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
