@@ -5,3 +5,6 @@ class Category(models.Model):
     _name = "category.category"
 
     name = fields.Char(string="Name")
+
+
+

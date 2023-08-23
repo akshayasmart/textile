@@ -7,7 +7,7 @@ class CrmLead(models.Model):
     state = fields.Selection([('work_open', 'Work Open'),
                               ('work_closed', 'Work Closed')], string='State', default='work_open')
     partner_id = fields.Many2one(
-        'res.partner', string='Customer')
+        'res.partner', string='Customer',domain="[('hide_in_contact', '=', False)]")
 
     regarding_id = fields.Many2one('regarding.regarding', string='Regarding')
 
@@ -31,4 +31,8 @@ class CrmLead(models.Model):
     category_id = fields.Many2one("category.category", string="Category")
     last_action = fields.Datetime(string='Last Action')
     quantity = fields.Integer(string='Quantity')
+
+#
+# class User(models.Model):
+#     _inherit =
 

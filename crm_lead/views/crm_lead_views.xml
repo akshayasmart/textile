@@ -32,9 +32,9 @@
             <xpath expr="//field[@name='website']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-                 <xpath expr="//field[@name='lang_id']" position="replace">
-                    <field name="quantity"/>
-                </xpath>
+            <xpath expr="//field[@name='lang_id']" position="replace">
+                <field name="quantity"/>
+            </xpath>
             <xpath expr="//page[@name='extra']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
@@ -72,8 +72,18 @@
                 <field name="name" string="Item Name" readonly="1"/>
             </xpath>
 
+              <xpath expr="//field[@name='name']" position="after">
+                <field name="contact_name"/>
+                <field name="quantity"/>
+                <field name="last_action"/>
+                <field name="regarding_id"/>
+                <field name="category_id"/>
+            </xpath>
+
         </field>
     </record>
+
+
 
     <record id="crm_lead_view" model="ir.ui.view">
         <field name="name">crm.lead.search</field>
