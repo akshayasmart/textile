@@ -14,10 +14,13 @@
             <xpath expr="//field[@name='partner_name']" position="before">
                 <field name="partner_id" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
             </xpath>
-            <xpath expr="//field[@name='tag_ids']" position="after">
-                <field name="quantity"/>
-            </xpath>
             <xpath expr="//div[@id='probability']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='email_cc']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='contact_name']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//field[@name='probability']" position="attributes">
@@ -35,6 +38,12 @@
             <xpath expr="//field[@name='lang_id']" position="replace">
                 <field name="quantity"/>
             </xpath>
+            <xpath expr="//field[@name='quantity']" position="after">
+                <field name="ref_number" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='title']" position="replace">
+                <field name="child_id"/>
+            </xpath>
             <xpath expr="//page[@name='extra']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
@@ -44,6 +53,7 @@
                 <field name="status_id" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
                 <field name="category_id" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
                 <field name="last_action" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>
+<!--                <field name="ref_number" attrs="{'invisible': [('type', '=', 'opportunity')]}"/>-->
 
             </xpath>
             <label for="name" position="replace">

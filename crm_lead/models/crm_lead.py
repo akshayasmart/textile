@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models,api
 
 
 class CrmLead(models.Model):
@@ -7,7 +7,7 @@ class CrmLead(models.Model):
     state = fields.Selection([('work_open', 'Work Open'),
                               ('work_closed', 'Work Closed')], string='State', default='work_open')
     partner_id = fields.Many2one(
-        'res.partner', string='Customer',domain="[('hide_in_contact', '=', False)]")
+        'res.partner', string='Customer',domain="['&',('hide_in_contact', '=', False),('parent_id','=', False)]")
 
     regarding_id = fields.Many2one('regarding.regarding', string='Regarding')
 
@@ -31,8 +31,40 @@ class CrmLead(models.Model):
     category_id = fields.Many2one("category.category", string="Category")
     last_action = fields.Datetime(string='Last Action')
     quantity = fields.Integer(string='Quantity')
+    child_id = fields.Many2one('res.partner',string='Child Tags', domain="[('parent_id','=', partner_id)]" )
+    email_from = fields.Char(
+        'Email', tracking=40, index=True,
+        compute='_compute_email_from', inverse='_inverse_email_from', readonly=False, store=True)
+    function = fields.Char('Job Position', compute='_compute_function', readonly=False, store=True)
+    phone = fields.Char(
+        'Phone', tracking=50,
+        compute='_compute_phone', inverse='_inverse_phone', readonly=False, store=True)
+    mobile = fields.Char('Mobile', compute='_compute_mobile', readonly=False, store=True)
+    ref_number = fields.Char(string='Reference number')
 
-#
-# class User(models.Model):
-#     _inherit =
 
+    @api.depends('child_id.email')
+    def _compute_email_from(self):
+        for lead in self:
+            if lead.child_id.email :
+                lead.email_from = lead.child_id.email
+
+    @api.depends('child_id')
+    def _compute_function(self):
+        """ compute the new values when partner_id has changed """
+        for lead in self:
+            if not lead.function or lead.child_id.function:
+                lead.function = lead.child_id.function
+
+    @api.depends('child_id.phone')
+    def _compute_phone(self):
+        for lead in self:
+            if lead.child_id.phone:
+                lead.phone = lead.child_id.phone
+
+    @api.depends('child_id')
+    def _compute_mobile(self):
+        """ compute the new values when partner_id has changed """
+        for lead in self:
+            if not lead.mobile or lead.child_id.mobile:
+                lead.mobile = lead.child_id.mobile
